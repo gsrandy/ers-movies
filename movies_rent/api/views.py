@@ -1,7 +1,7 @@
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import generics, mixins
 from movies_rent.models import MovieRent
-from .serializers import MovieRentCreateSerializer
+from .serializers import MovieRentCreateSerializer, MovieRentUpdateSerializer
 
 class MovieRentCreateApiView(mixins.ListModelMixin,generics.CreateAPIView):
     pass
@@ -20,3 +20,6 @@ class MovieRentUpdateApiView(generics.UpdateAPIView):
     permission_classes = (IsAuthenticated,)
     lookup_field       = 'id'
     queryset           = MovieRent.objects.all()
+    serializer_class   = MovieRentUpdateSerializer
+    
+     

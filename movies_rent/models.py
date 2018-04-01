@@ -23,6 +23,9 @@ class MovieRent(models.Model):
     def save(self, *args, **kwargs):
         if self.pk is None:
            self.set_rent_data()
+        elif self.status != 'R':
+            self.status = 'R'
+            self.calc_penalty_amt()   
         super().save(*args, **kwargs)  # Call the "real" save() method.
 
     def set_rent_data(self):
@@ -37,7 +40,7 @@ class MovieRent(models.Model):
         current_date = datetime.datetime.now().date()
         if current_date > self.rent_end_date:
             self.penalty_amt = self.rent_amt * 0.05
-            self.total_amt = self.rent_amt + self.penalty_amt
+            self.total_amt = self.rent_amt + self.penalty_amt    
 
 
     @property
