@@ -1,4 +1,5 @@
-#H1 ERS Movies Rest Api.
+ERS Movies Rest Api.
+====================
 
 This document is intendeed to provide valuable information about the app and his dependencies.
 
